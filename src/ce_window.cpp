@@ -1,6 +1,7 @@
 #include "ce_window.hpp"
 
 #include <string>
+#include <stdexcept>
 
 namespace ce {
     CEwindow::CEwindow(int w, int h, std::string name) : width{w}, height{h}, windowName{name} {
@@ -10,6 +11,20 @@ namespace ce {
     CEwindow::~CEwindow() {
         glfwDestroyWindow(window);
         glfwTerminate();
+    }
+
+    bool CEwindow::shouldClose() { 
+        return glfwWindowShouldClose(window);
+    }
+
+    void CEwindow::createWindowSurface(VkInstance instance, VkSurfaceKHR *surface) {
+        if(glfwCreateWindowSurface(instance, window, nullptr, surface) != VK_SUCCESS) {
+            throw std::runtime_error("Failed to create window surface");
+        }
+    }
+
+    GLFWwindow *CEwindow::getPGLFWWindow() {
+        return window;
     }
 
     void CEwindow::initWindow() {

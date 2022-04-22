@@ -14,19 +14,17 @@ namespace ce {
         CEwindow(const CEwindow&) = delete;
         CEwindow &operator = (const CEwindow&) = delete;
 
-        bool shouldClose() { 
-            return glfwWindowShouldClose(window);
-        }
+        bool shouldClose();
+        void createWindowSurface(VkInstance instance, VkSurfaceKHR *surface);
+        GLFWwindow *getPGLFWWindow();
 
         private:
-
-        void initWindow();
-
         const int width;
         const int height;
 
         std::string windowName;
-
         GLFWwindow *window;
+
+        void initWindow();
     };
 }

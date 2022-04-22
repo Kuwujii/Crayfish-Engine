@@ -4,7 +4,7 @@
 
 namespace ce {
     void CEGDK::run() {
-        while(!CEwindow.shouldClose()) {
+        while(!ceWindow.shouldClose()) {
             glfwPollEvents();
         }
     }

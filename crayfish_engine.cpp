@@ -1,6 +1,5 @@
 #include "src/cegdk.hpp"
 
-#include <cstdlib>
 #include <iostream>
 #include <stdexcept>
 

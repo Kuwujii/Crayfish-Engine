@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ce_window.hpp"
+#include "ce_pipeline.hpp"
 
 namespace ce {
     class CEGDK {
@@ -11,6 +12,7 @@ namespace ce {
         void run();
 
         private:
-        CEwindow CEwindow{WIDTH, HEIGHT, "Crayfish Engine GDK"};  
+        CEwindow ceWindow{WIDTH, HEIGHT, "Crayfish Engine"};
+        CEpipeline cePipeline{"build/Debug/shaders/simple.vert.spv", "build/Debug/shaders/simple.frag.spv"};
     };
 }
