@@ -23,10 +23,6 @@ namespace ce {
         }
     }
 
-    GLFWwindow *CEwindow::getPGLFWWindow() {
-        return window;
-    }
-
     void CEwindow::initWindow() {
         glfwInit();
         glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);

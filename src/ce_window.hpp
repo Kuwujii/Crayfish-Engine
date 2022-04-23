@@ -16,7 +16,6 @@ namespace ce {
 
         bool shouldClose();
         void createWindowSurface(VkInstance instance, VkSurfaceKHR *surface);
-        GLFWwindow *getPGLFWWindow();
 
         private:
         const int width;

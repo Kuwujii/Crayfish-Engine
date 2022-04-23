@@ -2,6 +2,7 @@
 
 #include "ce_window.hpp"
 #include "ce_pipeline.hpp"
+#include "ce_device.hpp"
 
 namespace ce {
     class CEGDK {
@@ -13,6 +14,7 @@ namespace ce {
 
         private:
         CEwindow ceWindow{WIDTH, HEIGHT, "Crayfish Engine"};
-        CEpipeline cePipeline{"build/Debug/shaders/simple.vert.spv", "build/Debug/shaders/simple.frag.spv"};
+        CEdevice ceDevice{ceWindow};
+        CEpipeline cePipeline{ceDevice, "build/Debug/shaders/simple.vert.spv", "build/Debug/shaders/simple.frag.spv", CEpipeline::defaultPipelineConfigInfo(WIDTH, HEIGHT)};
     };
 }
