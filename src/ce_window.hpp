@@ -12,7 +12,9 @@ namespace ce {
         ~CEwindow();
 
         CEwindow(const CEwindow&) = delete;
-        CEwindow &operator = (const CEwindow&) = delete;
+        CEwindow& operator = (const CEwindow&) = delete;
+        
+        VkExtent2D getExtent();
 
         bool shouldClose();
         void createWindowSurface(VkInstance instance, VkSurfaceKHR *surface);

@@ -13,6 +13,13 @@ namespace ce {
         glfwTerminate();
     }
 
+    VkExtent2D CEwindow::getExtent() {
+        return {
+            static_cast<uint32_t>(width),
+            static_cast<uint32_t>(height)
+        };
+    }
+
     bool CEwindow::shouldClose() { 
         return glfwWindowShouldClose(window);
     }

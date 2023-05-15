@@ -6,7 +6,7 @@
 #include <vector>
 
 namespace ce {
-        struct QueueFamilyIndices {
+    struct QueueFamilyIndices {
         uint32_t graphicsFamily;
         uint32_t presentFamily;
         bool graphicsFamilyHasValue = false;
@@ -34,12 +34,28 @@ namespace ce {
         ~CEdevice();
 
         CEdevice(const CEdevice&) = delete;
-        void operator = (const CEdevice&) = delete;
+        CEdevice& operator = (const CEdevice&) = delete;
         CEdevice(CEdevice&&) = delete;
-        CEdevice &operator = (CEdevice&&) = delete;
+        CEdevice& operator = (CEdevice&&) = delete;
+
+        VkDevice getDevice();
+        SwapChainSupportDetails getSwapChainSupport();
+        VkSurfaceKHR getSurface();
+        VkCommandPool getCommandPool();
+        VkQueue getGraphicsQueue();
+        VkQueue getPresentQueue();
 
         QueueFamilyIndices findPhysicalQueueFamilies();
-        VkDevice getDevice();
+        VkFormat findSupportedFormat(const std::vector<VkFormat> &candidates, VkImageTiling tiling, VkFormatFeatureFlags features);
+        uint32_t findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties);
+
+        void createImageWithInfo(const VkImageCreateInfo &imageInfo, VkMemoryPropertyFlags properties, VkImage &image, VkDeviceMemory &imageMemory);
+        void createBuffer(VkDeviceSize size, VkBufferUsageFlags usage, VkMemoryPropertyFlags properties, VkBuffer &buffer, VkDeviceMemory &bufferMemory);
+        
+        VkCommandBuffer beginSingleTimeCommands();
+        void endSingleTimeCommands(VkCommandBuffer commandBuffer);
+        void copyBuffer(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSize size);
+        void copyBufferToImage(VkBuffer buffer, VkImage image, uint32_t width, uint32_t height, uint32_t layerCount);
 
         private:
         const std::vector<const char*> validationLayers = {"VK_LAYER_KHRONOS_validation"};

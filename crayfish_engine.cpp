@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <stdexcept>
+#include <cstdlib>
 
 int main() {
     ce::CEGDK cegdk{};
