@@ -7,6 +7,7 @@
 
 namespace ce {
     CEGDK::CEGDK() {
+        loadModels();
         createPipelineLayout();
         createPipeline();
         createCommandBuffers();
@@ -86,7 +87,8 @@ namespace ce {
             vkCmdBeginRenderPass(commandBuffers[i], &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
 
             cePipeline->bind(commandBuffers[i]);
-            vkCmdDraw(commandBuffers[i], 3, 1, 0, 0);
+            ceModel->bind(commandBuffers[i]);
+            ceModel->draw(commandBuffers[i]);
 
             vkCmdEndRenderPass(commandBuffers[i]);
             if(vkEndCommandBuffer(commandBuffers[i]) != VK_SUCCESS) {
@@ -108,5 +110,15 @@ namespace ce {
         if(result != VK_SUCCESS) {
             throw std::runtime_error("Failed to present swap chain image");
         }
+    }
+
+    void CEGDK::loadModels() {
+        std::vector<CEmodel::Vertex> vertices {
+            {{0.5f, -0.5f}},
+            {{0.5f, 0.5f}},
+            {{-0.5f, 0.5f}}
+        };
+
+        ceModel = std::make_unique<CEmodel>(ceDevice, vertices);
     }
 }

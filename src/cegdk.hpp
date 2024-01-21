@@ -4,6 +4,7 @@
 #include "ce_pipeline.hpp"
 #include "ce_swap_chain.hpp"
 #include "ce_device.hpp"
+#include "ce_model.hpp"
 
 #include <memory>
 #include <vector>
@@ -27,6 +28,7 @@ namespace ce {
         void createPipeline();
         void createCommandBuffers();
         void drawFrame();
+        void loadModels();
 
         CEwindow ceWindow = {WIDTH, HEIGHT, "Crayfish Engine"};
         CEdevice ceDevice = {ceWindow};
@@ -34,5 +36,6 @@ namespace ce {
         std::unique_ptr<CEpipeline> cePipeline;
         VkPipelineLayout pipelineLayout;
         std::vector<VkCommandBuffer> commandBuffers;
+        std::unique_ptr<CEmodel> ceModel;
     };
 }
