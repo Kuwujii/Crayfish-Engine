@@ -1,0 +1,25 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "Windows Build",
+            "dependsOrder": "sequence",
+            "dependsOn": ["Shader Build", "Source Build"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "type": "shell",
+            "label": "Shader Build",
+            "command": "\"${workspaceFolder}/compile_shaders.bat\""
+        },
+        {
+            "type": "shell",
+            "label": "Source Build",
+            "command": "${command:cmake.tasksBuildCommand}"
+        }
+    ]
+}
