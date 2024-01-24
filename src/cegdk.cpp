@@ -114,9 +114,9 @@ namespace ce {
 
     void CEGDK::loadModels() {
         std::vector<CEmodel::Vertex> vertices {
-            {{0.5f, -0.5f}},
-            {{0.5f, 0.5f}},
-            {{-0.5f, 0.5f}}
+            {{0.0f, -0.5f}, {1.0f, 1.0f, 1.0f}},
+            {{0.5f, 0.5f}, {1.0f, 0.0f, 0.5f}},
+            {{-0.5f, 0.5f}, {0.0f, 1.0f, 0.5f}}
         };
 
         ceModel = std::make_unique<CEmodel>(ceDevice, vertices);
